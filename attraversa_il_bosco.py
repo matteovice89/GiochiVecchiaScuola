@@ -1,0 +1,13 @@
+mappa=[
+    ["*","S","S","U","A"],
+    ["A","C","A","A","A"],
+    ["A","S","S","S","A"],
+    ["S","S","A","S","A"],
+    ["A","A","S","I","A"]
+    ]
+
+def instruzioni(ISTRUZIONI):
+    print('COMANDI\n')
+    print('MAPPA visvualizza la mappa\n')
+    print('NORD vai a nord\SUD vai a sud\nEST vai a est,\nOVEST vai a ovest\n')
+    print('ASCIA abbatte un cespuglio\n')
