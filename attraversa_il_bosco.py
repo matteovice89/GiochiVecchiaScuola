@@ -7,13 +7,15 @@ mappa=[
     ]
 comando="INIZIO"
 
-def instruzioni(ISTRUZIONI):
-    print('COMANDI\n')
-    print('MAPPA visvualizza la mappa\n')
-    print('NORD vai a nord\SUD vai a sud\nEST vai a est,\nOVEST vai a ovest\n')
-    print('ASCIA abbatte un cespuglio\n')
-    print('END interrompo il gioco')
-    return comando
+def instruzioni():
+    print('ECCO I COMANDI\n')
+    print('MAPPA --> visvualizza la mappa\n')
+    print('NORD --> vai a nord\SUD vai a sud\nEST vai a est,\nOVEST vai a ovest\n')
+    print('ASCIA --> abbatte un cespuglio\n')
+    print('END --> interrompo il gioco')
+    
 
 while comando!= "END":
     comando=str(input('INSERISCI UN COMANDO (SCRIVI ISTRUZIONI PER SAPERE COSA FARE)\n'))
+    if comando == 'ISTRUZIONI':
+        instruzioni()
