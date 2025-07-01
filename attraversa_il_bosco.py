@@ -11,3 +11,6 @@ def instruzioni(ISTRUZIONI):
     print('MAPPA visvualizza la mappa\n')
     print('NORD vai a nord\SUD vai a sud\nEST vai a est,\nOVEST vai a ovest\n')
     print('ASCIA abbatte un cespuglio\n')
+    print('END interrompo il gioco')
+
+while 
