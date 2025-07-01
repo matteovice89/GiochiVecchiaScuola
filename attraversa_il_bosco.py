@@ -19,3 +19,6 @@ while comando!= "END":
     comando=str(input('INSERISCI UN COMANDO (SCRIVI ISTRUZIONI PER SAPERE COSA FARE)\n'))
     if comando == 'ISTRUZIONI':
         instruzioni()
+    elif comando=='MAPPA':
+        for r in range(len(mappa)):
+             print(mappa[r])
