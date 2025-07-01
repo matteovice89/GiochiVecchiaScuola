@@ -5,6 +5,7 @@ mappa=[
     ["S","S","A","S","A"],
     ["A","A","S","I","A"]
     ]
+comando="INIZIO"
 
 def instruzioni(ISTRUZIONI):
     print('COMANDI\n')
@@ -12,5 +13,7 @@ def instruzioni(ISTRUZIONI):
     print('NORD vai a nord\SUD vai a sud\nEST vai a est,\nOVEST vai a ovest\n')
     print('ASCIA abbatte un cespuglio\n')
     print('END interrompo il gioco')
+    return comando
 
-while 
+while comando!= "END":
+    comando=str(input('INSERISCI UN COMANDO (SCRIVI ISTRUZIONI PER SAPERE COSA FARE)\n'))
