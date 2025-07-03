@@ -42,6 +42,9 @@ fine = [0, 3]  # stessa cosa per inizio e fine
 
 while comando != "END":
     comando = str(input('INSERISCI UN COMANDO (SCRIVI ISTRUZIONI PER SAPERE COSA FARE)\n'))
+    if posizione == fine:
+        print('COMPLIMENTI SEI USCITO DAL BOSCO ED HAI TERMINATO IL LIVELLO')
+        comando='END'
     if comando == 'ISTRUZIONI':
         instruzioni()
     elif comando == 'MAPPA':
@@ -53,3 +56,28 @@ while comando != "END":
             mappa[posizione[0]][posizione[1]] = 'P'
          else:
             posizione[0] = posizione[0] + 1
+
+    elif comando == 'SUD':
+         posizione[0] = posizione[0] + 1
+         if confini(posizione) != 0 and ostacoli(mappa[posizione[0]][posizione[1]]) != 0:
+            mappa[posizione[0]][posizione[1]] = 'P'
+         else:
+            posizione[0] = posizione[0] - 1
+
+    elif comando == 'EST':
+         posizione[1] = posizione[1] + 1
+         if confini(posizione) != 0 and ostacoli(mappa[posizione[0]][posizione[1]]) != 0:
+            mappa[posizione[0]][posizione[1]] = 'P'
+         else:
+            posizione[1] = posizione[1] - 1
+
+    elif comando == 'OVEST':
+         posizione[1] = posizione[1] - 1
+         if confini(posizione) != 0 and ostacoli(mappa[posizione[0]][posizione[1]]) != 0:
+            mappa[posizione[0]][posizione[1]] = 'P'
+         else:
+            posizione[1] = posizione[1] + 1
+
+    if posizione == fine:
+        print('COMPLIMENTI SEI USCITO DAL BOSCO ED HAI TERMINATO IL LIVELLO')
+        comando='END'
