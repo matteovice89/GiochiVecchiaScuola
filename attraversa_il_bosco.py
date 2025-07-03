@@ -21,8 +21,11 @@ def confini(posizione):
         print('SEI SUL CONFINE')
         controllo=0
         return (controllo)
-def ostacoli(posizione):
-    return(controllo)
+def ostacoli(controllo):
+    if controllo == "A":
+        print('ATTENZIONE HA SBATTUTO CONTRO UN ALBERO')
+        controllo=0
+        return(controllo)
         
 def stampa(cartina):
     for r in range(len(cartina)):
@@ -44,7 +47,7 @@ while comando != "END":
         
     elif comando == 'NORD':
         posizione[0] = posizione[0] - 1
-        if confini(posizione) != 0:
+        if confini(posizione) != 0 and ostacoli(mappa[posizione[0]][posizione[1]])!=0:
             mappa[posizione[0]][posizione[1]] = 'P'
             posizionev = posizione
             
