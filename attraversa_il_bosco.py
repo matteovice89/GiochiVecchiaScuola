@@ -21,13 +21,16 @@ def confini(posizione):
         print('SEI SUL CONFINE')
         controllo=0
         return (controllo)
+def ostacoli(posizione):
+    return(controllo)
+        
 def stampa(cartina):
     for r in range(len(cartina)):
         print(cartina[r])
 
 
 
-posizione = [4, 3]  # la posizione è una lista dove i valori sono le cordinate nella matrice
+posizione = [4, 3]  # la posizione C( una lista dove i valori sono le cordinate nella matrice
 posizionev = posizione  # varibile di comodo per gestire i confini
 inizio = [4, 3]
 fine = [0, 3]  # stessa cosa per inizio e fine
@@ -38,19 +41,37 @@ while comando != "END":
         instruzioni()
     elif comando == 'MAPPA':
         stampa(mappa)
+        
     elif comando == 'NORD':
         posizione[0] = posizione[0] - 1
         if confini(posizione) != 0:
             mappa[posizione[0]][posizione[1]] = 'P'
             posizionev = posizione
-            stampa(mappa)
+            
         else:
             posizione = posizionev
+            
     elif comando == 'SUD':
         posizione[0] = posizione[0] + 1
         if confini(posizione) != 0:
             mappa[posizione[0]][posizione[1]] = 'P'
             posizionev = posizione
-            stampa(mappa)
+            
+        else:
+            posizione = posizionev
+            
+    elif comando == 'EST':
+        posizione[1] = posizione[1] + 1
+        if confini(posizione) != 0:
+            mappa[posizione[0]][posizione[1]] = 'P'
+            posizionev = posizione
+            
+        
+    elif comando == 'OVEST':
+        posizione[1] = posizione[1] - 1
+        if confini(posizione) != 0:
+            mappa[posizione[0]][posizione[1]] = 'P'
+            posizionev = posizione
+            
         else:
             posizione = posizionev
