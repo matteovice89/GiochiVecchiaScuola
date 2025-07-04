@@ -1,3 +1,6 @@
+NB. DEVO MODIFICARE IL CODICE  PER RENDERLO PIù COMPATTO E LEGGIBILE
+UNA SOLUZIONE SAREBBE LA FUNZIONE MUOVI OPPURE DIRETTAMENTE IN OOP
+
 # GiochiVecchiaScuola
 Mi sono messo a programmare giochini testuali e non in Python
 -Attraversa il bosco è un gioco semplice dove si deve attraversare un bosco stando sul sentiero.
