@@ -46,4 +46,9 @@ cartina=Mappa([
     ["S", "S", "A", "S", "A"],
     ["A", "A", "S", "I", "A"]
 ])
+
+
 partita=Gioco([4,3],[0,4])
+partenza=partita.inizio
+nomepl1=str(input('Benvenuto, inserisci il tuo nome\n'))
+player1=Giocatore(nomepl1,partenza,10)
