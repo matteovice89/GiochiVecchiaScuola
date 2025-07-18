@@ -1,5 +1,3 @@
-'''Sto rifacendo il giochino precedente ma in oop'''
-#ATTENZIONE ANCORA IN LAVORAZIONE
 class Mappa:
     def __init__(self, mappa):
         self.mappa = mappa
@@ -52,3 +50,8 @@ partita=Gioco([4,3],[0,4])
 partenza=partita.inizio
 nomepl1=str(input('Benvenuto, inserisci il tuo nome\n'))
 player1=Giocatore(nomepl1,partenza,10)
+print('Ottimo',nomepl1,'Dovrai riusciure ad uscire dal bosco, Per orientarti usa la cartina che vedi qui sotto\n')
+cartina.stampa()
+print('\n Per guardati attorno ti basterà scrivere guarda, e per muoverti usa i punti cardinali nord, sud, ovest ed est\n')
+print('ad esempio digita vai a nord per muoverti di una posizione verso nord ecc..se ti trovi nei cespugli usa il comando usa ascia per liberarti\n')
+print('Spero di averti detto tutto..ah si usa comando mappa se non sai dove sei..in bocca al lupo e partiamo\n')
