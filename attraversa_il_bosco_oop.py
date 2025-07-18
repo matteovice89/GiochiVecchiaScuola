@@ -55,3 +55,7 @@ cartina.stampa()
 print('\n Per guardati attorno ti basterà scrivere guarda, e per muoverti usa i punti cardinali nord, sud, ovest ed est\n')
 print('ad esempio digita vai a nord per muoverti di una posizione verso nord ecc..se ti trovi nei cespugli usa il comando usa ascia per liberarti\n')
 print('Spero di averti detto tutto..ah si usa comando mappa se non sai dove sei..in bocca al lupo e partiamo\n')
+comando='inizio'
+
+while comando != 'end':
+    comando=str(input(''))
