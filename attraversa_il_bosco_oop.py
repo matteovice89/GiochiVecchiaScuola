@@ -17,7 +17,7 @@ class Giocatore:
         pass
     
     def guarda(self):#al posto di aggiornare la mappa in questa versione ci si guarda attorno e ci si orienta 
-        pass
+        print (self.posizione) #non è corretto ma mi serve per definire poi TOGLIERE 
     
     def abbatti(self): #usa l'ascia e abbatte cespugli, rovi ecc
         pass
@@ -61,3 +61,5 @@ while comando != 'end':
     comando=str(input(''))
     if 'mappa' in comando: #se scrivo usa la mappa o guarda la mappa comunque funziona
         cartina.stampa()
+    elif 'guarda'in comando:
+        player1.guarda()
