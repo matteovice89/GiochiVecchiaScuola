@@ -59,3 +59,5 @@ comando='inizio'
 
 while comando != 'end':
     comando=str(input(''))
+    if 'mappa' in comando: #se scrivo usa la mappa o guarda la mappa comunque funziona
+        cartina.stampa()
