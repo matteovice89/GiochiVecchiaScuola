@@ -14,11 +14,13 @@ class Giocatore:
         self.vita = vita
 
     def muovi(self):
-        #fare controlo confine
         if self.direzione=='nord':
+            if self.posizione[0]==0:
+                print('Sei sul confine non puoi avvanzare verso nord')
+            else:
                 nord=self.posizione[0]
                 self.posizione[0]=nord-1 
-                print(self.posizione)
+                #print(self.posizione) #serve per il debug 
     def guarda(self):  # al posto di aggiornare la mappa in questa versione ci si guarda attorno e ci si orienta
         #print(self.posizione)
         verticale=self.posizione[0]
