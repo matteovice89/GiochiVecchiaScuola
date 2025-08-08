@@ -8,14 +8,19 @@ class Mappa:
 
 
 class Giocatore:
-    def __init__(self, nome, posizione, vita):
+    def __init__(self, nome, posizione, vita,direzione):
         self.nome = nome
         self.posizione = posizione
         self.vita = vita
 
     def muovi(self):
-        pass
-
+        if self.direzione=='nord':
+            if self.posizione[0]==0:
+                print('Sei sul confine non puoi avvanzare verso nord')
+            else:
+                nord=self.posizione[0]
+                self.posizione[0]=nord-1 
+                #print(self.posizione) #serve per il debug 
     def guarda(self):  # al posto di aggiornare la mappa in questa versione ci si guarda attorno e ci si orienta
         #print(self.posizione)
         verticale=self.posizione[0]
@@ -72,7 +77,7 @@ cartina = Mappa([
 partita = Gioco([4, 3], [0, 4])
 partenza = partita.inizio
 nomepl1 = str(input('Benvenuto, inserisci il tuo nome\n'))
-player1 = Giocatore(nomepl1, partenza, 10)
+player1 = Giocatore(nomepl1, partenza, 10,'')
 print('Ottimo', nomepl1, 'Dovrai riusciure ad uscire dal bosco, Per orientarti usa la cartina che vedi qui sotto\n')
 cartina.stampa()
 print(
@@ -88,3 +93,6 @@ while comando != 'end':
         cartina.stampa()
     elif 'guarda' in comando:
         player1.guarda()
+    elif 'nord' in comando:
+        player1.direzione='nord'
+        player1.muovi()
