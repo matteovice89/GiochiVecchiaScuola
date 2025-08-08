@@ -1,88 +1,96 @@
-mappa = [
+class Mappa:
+    def __init__(self, mappa):
+        self.mappa = mappa
+
+    def stampa(self):
+        for r in self.mappa:
+            print(" ".join(r))
+
+
+class Giocatore:
+    def __init__(self, nome, posizione, vita,direzione):
+        self.nome = nome
+        self.posizione = posizione
+        self.vita = vita
+
+    def muovi(self):
+        #fare controlo confine
+        if self.direzione=='nord':
+                nord=self.posizione[0]
+                self.posizione[0]=nord-1 
+                print(self.posizione)
+    def guarda(self):  # al posto di aggiornare la mappa in questa versione ci si guarda attorno e ci si orienta
+        #print(self.posizione)
+        verticale=self.posizione[0]
+        orizzontale=self.posizione[1]
+        #print(verticale)
+        #print(orizzontale)
+        try:
+            nord=cartina.mappa[verticale-1][orizzontale]
+            print('a nord è presente', nord)
+        except IndexError:
+            print('A nord c\'è il confine')
+        try:
+            sud = cartina.mappa[verticale + 1][orizzontale]
+            print('a sud è presente', sud)
+        except IndexError:
+            print('A sud c\'è il confine')
+        try:
+            est = cartina.mappa[verticale][orizzontale-1]
+            print('a est è presente', est)
+        except IndexError:
+            print('A est c\'è il confine')
+        try:
+            ovest = cartina.mappa[verticale][orizzontale+1]
+            print('a ovest è presente', ovest)
+        except IndexError:
+            print('A ovest c\'è il confine')
+
+
+    def abbatti(self):  # usa l'ascia e abbatte cespugli, rovi ecc
+        pass
+
+
+class Elementi:  # questa serve per ragruppare gli elementi come alberi cespugli e altro
+    def __init__(self, genere, vivo, posizione):
+        self.genere = genere
+        self.vivo = vivo  # esempio il cespuglio se viene abbattuto diventa vivo false
+        self.posizione = posizione
+
+
+class Gioco:  # la classe non è essenziale ora ma se implemento nuove cose è già pronta
+    def __init__(self, inizio, fine):
+        self.inizio = inizio
+        self.fine = fine
+
+
+cartina = Mappa([
     ["*", "S", "S", "U", "A"],
     ["A", "C", "A", "A", "A"],
     ["A", "S", "S", "S", "A"],
     ["S", "S", "A", "S", "A"],
     ["A", "A", "S", "I", "A"]
-]
-comando = "INIZIO"
+])
 
+partita = Gioco([4, 3], [0, 4])
+partenza = partita.inizio
+nomepl1 = str(input('Benvenuto, inserisci il tuo nome\n'))
+player1 = Giocatore(nomepl1, partenza, 10,'')
+print('Ottimo', nomepl1, 'Dovrai riusciure ad uscire dal bosco, Per orientarti usa la cartina che vedi qui sotto\n')
+cartina.stampa()
+print(
+    '\n Per guardati attorno ti basterà scrivere guarda, e per muoverti usa i punti cardinali nord, sud, ovest ed est\n')
+print(
+    'ad esempio digita vai a nord per muoverti di una posizione verso nord ecc..se ti trovi nei cespugli usa il comando usa ascia per liberarti\n')
+print('Spero di averti detto tutto..ah si usa comando mappa se non sai dove sei..in bocca al lupo e partiamo\n')
+comando = 'inizio'
 
-def instruzioni():
-    print('DIGITA UNO DEI SEGUENTI COMANDI\n')
-    print('ECCO I COMANDI\n')
-    print('MAPPA --> visvualizza la mappa\n')
-    print('NORD --> vai a nord\nSUD--> vai a sud\nEST--> vai a est,\nOVEST--> vai a ovest\n')
-    print('ASCIA --> abbatte un cespuglio\n')
-    print('END --> interrompo il gioco')
-
-
-def confini(posizione):
-    if posizione[0] < 0 or posizione[0] > 4 or posizione[1] < 0 or posizione[1] > 4:
-        print('SEI SUL CONFINE')
-        controllo = 0
-        return (controllo)
-
-
-def ostacoli(controllo):
-    if controllo == "A":
-        print('ATTENZIONE HA SBATTUTO CONTRO UN ALBERO')
-        controllo = 0
-        return (controllo)
-
-
-def stampa(cartina):
-    for r in range(len(cartina)):
-        print(cartina[r])
-
-
-posizione = [4, 3]  # la posizione C( una lista dove i valori sono le cordinate nella matrice
-
-inizio = [4, 3]
-fine = [0, 3]  # stessa cosa per inizio e fine
-print('BENVENUTO NEL BOSCO\n RIUSCIRAI A TROVARE L''USCITA??\n DIGITA UN COMANDO\n PROVA SUBITO ISTRUZIONI PER AVERE L''ELENCO\n')
-while comando != "END":
-    comando = str(input('PROSSIMO COMANDO?\n'))
-    if posizione == fine:
-        print('COMPLIMENTI SEI USCITO DAL BOSCO ED HAI TERMINATO IL LIVELLO')
-        comando='END'
-    if comando == 'ISTRUZIONI':
-        instruzioni()
-    elif comando == 'MAPPA':
-        stampa(mappa)
-        print('\n OTTIMA IDEA CONSULTARE UNA MAPPA, NON VORRAI MICA ANDARE CONTRO UN ALBEO..\n')
-    elif comando == 'NORD':
-         posizione[0] = posizione[0] - 1
-         if confini(posizione) != 0 and ostacoli(mappa[posizione[0]][posizione[1]]) != 0:
-            mappa[posizione[0]][posizione[1]] = 'P'
-            print('\n TI SEI MOSS* VERSO NORD E NON SEI USCITO DAL SENTIERO\n')
-         else:
-            posizione[0] = posizione[0] + 1
-
-    elif comando == 'SUD':
-         posizione[0] = posizione[0] + 1
-         if confini(posizione) != 0 and ostacoli(mappa[posizione[0]][posizione[1]]) != 0:
-            mappa[posizione[0]][posizione[1]] = 'P'
-            print('\n TI SEI MOSS* VERSO SUD E NON SEI USCITO DAL SENTIERO\n')
-         else:
-            posizione[0] = posizione[0] - 1
-
-    elif comando == 'EST':
-         posizione[1] = posizione[1] + 1
-         if confini(posizione) != 0 and ostacoli(mappa[posizione[0]][posizione[1]]) != 0:
-            mappa[posizione[0]][posizione[1]] = 'P'
-            print('\n TI SEI MOSS* VERSO EST E NON SEI USCITO DAL SENTIERO\n')
-         else:
-            posizione[1] = posizione[1] - 1
-
-    elif comando == 'OVEST':
-         posizione[1] = posizione[1] - 1
-         if confini(posizione) != 0 and ostacoli(mappa[posizione[0]][posizione[1]]) != 0:
-            mappa[posizione[0]][posizione[1]] = 'P'
-            print('\n TI SEI MOSS* VERSO NORD E NON SEI USCITO DAL SENTIERO\n')
-         else:
-            posizione[1] = posizione[1] + 1
-
-    if posizione == fine:
-        print('COMPLIMENTI SEI USCIT* DAL BOSCO ED HAI TERMINATO IL LIVELLO')
-        comando='END'
+while comando != 'end':
+    comando = str(input(''))
+    if 'mappa' in comando:  # se scrivo usa la mappa o guarda la mappa comunque funziona
+        cartina.stampa()
+    elif 'guarda' in comando:
+        player1.guarda()
+    elif 'nord' in comando:
+        player1.direzione='nord'
+        player1.muovi()
