@@ -20,20 +20,29 @@ class Giocatore:
             else:
                 nord=self.posizione[0]
                 self.posizione[0]=nord-1 
+                
         if self.direzione=='sud':
             if self.posizione[0]==len(cartina.mappa)-1:
                 print('Sei sul confine non puoi avvanzare verso sud')
             else:
                 sud=self.posizione[0]
                 self.posizione[0]=sud+1 
+                
         if self.direzione=='est':
             if self.posizione[1]==len(cartina.mappa)-1:
                 print('Sei sul confine non puoi avvanzare verso est')
             else:
                 est=self.posizione[1]
-                self.posizione[1]=nord+1 
+                self.posizione[1]=est+1
+                
+        if self.direzione=='ovest':
+            if self.posizione[1]==0:
+                print('Sei sul confine non puoi avvanzare verso nord')
+            else:
+                ovest=self.posizione[1]
+                self.posizione[1]=ovest-1 
             
-                #print(self.posizione) #serve per il debug 
+        print(self.posizione) #serve per il debug 
     def guarda(self):  # al posto di aggiornare la mappa in questa versione ci si guarda attorno e ci si orienta
         #print(self.posizione)
         verticale=self.posizione[0]
@@ -112,3 +121,10 @@ while comando != 'end':
     elif 'sud' in comando:
         player1.direzione='sud'
         player1.muovi()
+    elif 'est' in comando:
+        player1.direzione='est'
+        player1.muovi() 
+    elif 'ovest' in comando:
+        player1.direzione='ovest'
+        player1.muovi()
+    
