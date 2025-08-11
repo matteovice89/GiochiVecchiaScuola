@@ -14,6 +14,7 @@ class Giocatore:
         self.vita = vita
 
     def muovi(self):
+        
         if self.direzione=='nord':
             if self.posizione[0]==0:
                 print('Sei sul confine non puoi avvanzare verso nord')
