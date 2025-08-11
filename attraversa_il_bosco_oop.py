@@ -14,34 +14,39 @@ class Giocatore:
         self.vita = vita
 
     def muovi(self):
+        verticale=self.posizione[0]
+        orizzontale=self.posizione[1]
         
-        if self.direzione=='nord':
-            if self.posizione[0]==0:
-                print('Sei sul confine non puoi avvanzare verso nord')
-            else:
-                nord=self.posizione[0]
-                self.posizione[0]=nord-1 
-                
-        if self.direzione=='sud':
-            if self.posizione[0]==len(cartina.mappa)-1:
-                print('Sei sul confine non puoi avvanzare verso sud')
-            else:
-                sud=self.posizione[0]
-                self.posizione[0]=sud+1 
-                
-        if self.direzione=='est':
-            if self.posizione[1]==len(cartina.mappa)-1:
-                print('Sei sul confine non puoi avvanzare verso est')
-            else:
-                est=self.posizione[1]
-                self.posizione[1]=est+1
-                
-        if self.direzione=='ovest':
-            if self.posizione[1]==0:
-                print('Sei sul confine non puoi avvanzare verso nord')
-            else:
-                ovest=self.posizione[1]
-                self.posizione[1]=ovest-1 
+        if cartina.mappa[verticale][orizzontale] == "C":
+            print('Sei bloccato in un cespuglio devi usare un\'ascia')
+        else:
+            if self.direzione=='nord':
+                if self.posizione[0]==0:
+                    print('Sei sul confine non puoi avvanzare verso nord')
+                else:
+                    nord=self.posizione[0]
+                    self.posizione[0]=nord-1 
+                    
+            if self.direzione=='sud':
+                if self.posizione[0]==len(cartina.mappa)-1:
+                    print('Sei sul confine non puoi avvanzare verso sud')
+                else:
+                    sud=self.posizione[0]
+                    self.posizione[0]=sud+1 
+                    
+            if self.direzione=='est':
+                if self.posizione[1]==len(cartina.mappa)-1:
+                    print('Sei sul confine non puoi avvanzare verso est')
+                else:
+                    est=self.posizione[1]
+                    self.posizione[1]=est+1
+                    
+            if self.direzione=='ovest':
+                if self.posizione[1]==0:
+                    print('Sei sul confine non puoi avvanzare verso ovest')
+                else:
+                    ovest=self.posizione[1]
+                    self.posizione[1]=ovest-1 
             
         print(self.posizione) #serve per il debug 
     def guarda(self):  # al posto di aggiornare la mappa in questa versione ci si guarda attorno e ci si orienta
@@ -101,10 +106,11 @@ partita = Gioco([4, 3], [0, 4])
 partenza = partita.inizio
 nomepl1 = str(input('Benvenuto, inserisci il tuo nome\n'))
 player1 = Giocatore(nomepl1, partenza, 10,'')
+cespuglio1=Elementi('cespuglio',True,[1,1])
 print('Ottimo', nomepl1, 'Dovrai riusciure ad uscire dal bosco, Per orientarti usa la cartina che vedi qui sotto\n')
 cartina.stampa()
 print(
-    '\n Per guardati attorno ti basterà scrivere guarda, e per muoverti usa i punti cardinali nord, sud, ovest ed est\n')
+    '\n Per guardati attorno ti basterà scrivere guarda, e per muoverti usa i punti cardinali precduti da # #nord, #sud, #ovest ed #est\n')
 print(
     'ad esempio digita vai a nord per muoverti di una posizione verso nord ecc..se ti trovi nei cespugli usa il comando usa ascia per liberarti\n')
 print('Spero di averti detto tutto..ah si usa comando mappa se non sai dove sei..in bocca al lupo e partiamo\n')
@@ -116,16 +122,15 @@ while comando != 'end':
         cartina.stampa()
     elif 'guarda' in comando:
         player1.guarda()
-    elif 'nord' in comando:
+    elif '#nord' in comando: #tengo il cancelletto perchè est è contenuto in ovest
         player1.direzione='nord'
         player1.muovi()
-    elif 'sud' in comando:
+    elif '#sud' in comando:
         player1.direzione='sud'
         player1.muovi()
-    elif 'est' in comando:
+    elif '#est' in comando:
         player1.direzione='est'
         player1.muovi() 
-    elif 'ovest' in comando:
+    elif '#ovest' in comando:
         player1.direzione='ovest'
         player1.muovi()
-    
