@@ -58,7 +58,8 @@ class Giocatore:
             self.posizione[1]=on
             self.vita-=1
             print('Hai sbattuto male contro un albero, hai perso una vita e ti rimangono ',self.vita,' vite')
-        print(self.posizione) #serve per il debug 
+        
+        #print(self.posizione) #serve per il debug 
         
     def guarda(self):  # al posto di aggiornare la mappa in questa versione ci si guarda attorno e ci si orienta
         #print(self.posizione)
@@ -119,8 +120,9 @@ cartina = Mappa([
     ["A", "A", "S", "I", "A"]
 ])
 
-partita = Gioco([4, 3], [0, 4])
+partita = Gioco([4, 3], [0, 3])
 partenza = partita.inizio
+fine = partita.fine
 nomepl1 = str(input('Benvenuto, inserisci il tuo nome\n'))
 player1 = Giocatore(nomepl1, partenza, 3,'')
 cespuglio1=Elementi('cespuglio',True,[1,1])#cespuglio ricresce non muore per ora lascio così
@@ -134,7 +136,7 @@ print('Spero di averti detto tutto..ah si usa comando mappa se non sai dove sei.
 comando = 'inizio'
 
 while comando != 'end':
-
+    
     comando = str(input(''))
     if 'mappa' in comando:  # se scrivo usa la mappa o guarda la mappa comunque funziona
         cartina.stampa()
@@ -155,7 +157,12 @@ while comando != 'end':
     elif 'ascia' in comando:
         cespugli=[]
         player1.abbatti()
-        
     if player1.vita <= 0:
         print('Hai perso tutte le vite e sei morto')
         comando = 'end'
+    if  player1.posizione == fine:
+        print('Congratulazioni sei uscito dal bosco')
+        comando = 'end'
+    
+    #print(player1.posizione)
+    #print (fine)
