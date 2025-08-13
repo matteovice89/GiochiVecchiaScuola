@@ -78,15 +78,21 @@ class Giocatore:
 
 
     def abbatti(self):  # usa l'ascia e abbatte cespugli, rovi ecc
-        pass
+        verticale=self.posizione[0]
+        orizzontale=self.posizione[1]
+        if cartina.mappa[verticale][orizzontale] != "C":
+            print('Non ci sono rovi o cespugli da abbattere')
+        else:
+            cartina.mappa[verticale][orizzontale] = "S"
+            print('Cespuglio abbattuto')
 
 
 class Elementi:  # questa serve per ragruppare gli elementi come alberi cespugli e altro
     def __init__(self, genere, vivo, posizione):
         self.genere = genere
-        self.vivo = vivo  # esempio il cespuglio se viene abbattuto diventa vivo false
+        self.vivo = vivo  
         self.posizione = posizione
-
+#attualmente non mi serve, ma se implemento mostri ecc è pronta
 
 class Gioco:  # la classe non è essenziale ora ma se implemento nuove cose è già pronta
     def __init__(self, inizio, fine):
@@ -106,7 +112,8 @@ partita = Gioco([4, 3], [0, 4])
 partenza = partita.inizio
 nomepl1 = str(input('Benvenuto, inserisci il tuo nome\n'))
 player1 = Giocatore(nomepl1, partenza, 10,'')
-cespuglio1=Elementi('cespuglio',True,[1,1])
+cespuglio1=Elementi('cespuglio',True,[1,1])#cespuglio ricresce non muore per ora lascio così
+
 print('Ottimo', nomepl1, 'Dovrai riusciure ad uscire dal bosco, Per orientarti usa la cartina che vedi qui sotto\n')
 cartina.stampa()
 print(
@@ -134,3 +141,6 @@ while comando != 'end':
     elif '#ovest' in comando:
         player1.direzione='ovest'
         player1.muovi()
+    elif 'ascia' in comando:
+        cespugli=[]
+        player1.abbatti()
