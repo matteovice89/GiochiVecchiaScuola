@@ -16,6 +16,7 @@ class Giocatore:
     def muovi(self):
         verticale=self.posizione[0]
         orizzontale=self.posizione[1]
+        posizioneprecedente=self.posizione #variabile di comodo mi serve sotto per il controllo albero
         
         if cartina.mappa[verticale][orizzontale] == "C":
             print('Sei bloccato in un cespuglio devi usare un\'ascia')
@@ -47,8 +48,15 @@ class Giocatore:
                 else:
                     ovest=self.posizione[1]
                     self.posizione[1]=ovest-1 
-            
+        #aggiorno le variabili verticale e orizzontale e controllo di non essere su un albero            
+        verticale=self.posizione[0]
+        orizzontale=self.posizione[1] 
+        if cartina.mappa[verticale][orizzontale] == "A":
+            self.posizione=posizioneprecedente
+            self.vita-=1
+            print('Hai sbattuto male contro un albero, hai perso una vita e ti rimangono ',self.vita,' vite')
         print(self.posizione) #serve per il debug 
+        
     def guarda(self):  # al posto di aggiornare la mappa in questa versione ci si guarda attorno e ci si orienta
         #print(self.posizione)
         verticale=self.posizione[0]
@@ -113,7 +121,6 @@ partenza = partita.inizio
 nomepl1 = str(input('Benvenuto, inserisci il tuo nome\n'))
 player1 = Giocatore(nomepl1, partenza, 10,'')
 cespuglio1=Elementi('cespuglio',True,[1,1])#cespuglio ricresce non muore per ora lascio così
-
 print('Ottimo', nomepl1, 'Dovrai riusciure ad uscire dal bosco, Per orientarti usa la cartina che vedi qui sotto\n')
 cartina.stampa()
 print(
@@ -124,6 +131,7 @@ print('Spero di averti detto tutto..ah si usa comando mappa se non sai dove sei.
 comando = 'inizio'
 
 while comando != 'end':
+    #if player1.
     comando = str(input(''))
     if 'mappa' in comando:  # se scrivo usa la mappa o guarda la mappa comunque funziona
         cartina.stampa()
